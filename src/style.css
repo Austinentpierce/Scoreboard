@@ -9,8 +9,8 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  background-color: #f1e6eb;
-  color: #2b303a;
+  background-color: skyblue;
+  color: black;
 }
 
 h1 {
@@ -27,7 +27,7 @@ main {
 
 section {
   min-width: 20rem;
-  border: thin solid #7c7c7c;
+  border: thin solid black;
   border-radius: 0.3rem;
   margin-bottom: 3rem;
 
@@ -45,6 +45,7 @@ section h3 {
   margin: 1rem 0;
   font-family: Monospace;
   font-size: 3rem;
+  text-decoration: underline;
 }
 
 fieldset {
@@ -62,9 +63,9 @@ fieldset i {
 }
 
 fieldset i.add {
-  color: green;
+  color: black;
 }
 
 fieldset i.subtract {
-  color: #f64545;
+  color: white;
 }
