@@ -18,7 +18,6 @@ teamOnePlusButton?.addEventListener('click', handleClickOnTeamOnePlusButton)
 function handleClickOnTeamOneMinusButton() {
   if (firstTeamScore === 0) {
     console.debug('The value can not go below zero')
-
     return
   }
   firstTeamScore--
@@ -27,7 +26,6 @@ function handleClickOnTeamOneMinusButton() {
     teamOneScoreText.textContent = `${firstTeamScore}`
   }
 }
-
 teamOneMinusButton?.addEventListener('click', handleClickOnTeamOneMinusButton)
 function teamOneNameInputChanged(event: any) {
   const changedInputText = event.target
@@ -73,3 +71,16 @@ function handleClickOnTeamTwoMinusButton() {
 }
 
 teamTwoMinusButton?.addEventListener('click', handleClickOnTeamTwoMinusButton)
+
+function teamTwoNameInputChanged(event: any) {
+  const changedInputText2 = event.target
+
+  if (changedInputText2 instanceof HTMLInputElement) {
+    const textThatWasInput2 = changedInputText2.value
+
+    if (teamTwoNameText) {
+      teamTwoNameText.textContent = textThatWasInput2
+    }
+  }
+}
+teamTwoNameInput?.addEventListener('input', teamTwoNameInputChanged)
