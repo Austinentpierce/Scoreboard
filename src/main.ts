@@ -1,38 +1,67 @@
 import './style.css'
 
-let addingScore = document.querySelector('.team1 .add')
+let firstTeamScore = 0
+const teamOnePlusButton = document.querySelector('.team1 i.add')
+const teamOneMinusButton = document.querySelector('.team1 i.subtract')
+const teamOneScoreText = document.querySelector('.team1 h3')
+const teamOneNameInput = document.querySelector('.team1 input')
+const teamOneNameText = document.querySelector('.team1 h2')
 
-function handleClickAddingScoreForTeamOne() {
-  console.log('i did it')
+function handleClickOnTeamOnePlusButton() {
+  firstTeamScore++
+
+  if (teamOneScoreText) {
+    teamOneScoreText.textContent = `${firstTeamScore}`
+  }
 }
-addingScore?.addEventListener('click', handleClickAddingScoreForTeamOne)
+teamOnePlusButton?.addEventListener('click', handleClickOnTeamOnePlusButton)
+function handleClickOnTeamOneMinusButton() {
+  if (firstTeamScore === 0) {
+    console.debug('The value can not go below zero')
 
-let subtractingScore1 = document.querySelector('.team1 .subtract')
+    return
+  }
+  firstTeamScore--
 
-function handleClickSubtractingScoreForTeamOne() {
-  console.log('TOOK ONE AWAY')
+  if (teamOneScoreText) {
+    teamOneScoreText.textContent = `${firstTeamScore}`
+  }
 }
-subtractingScore1?.addEventListener(
-  'click',
-  handleClickSubtractingScoreForTeamOne
-)
 
-let addingScore2 = document.querySelector('.team2 .add')
+teamOneMinusButton?.addEventListener('click', handleClickOnTeamOneMinusButton)
+function teamOneNameInputChanged(event: any) {
+  const changedInputText = event.target
 
-function handleClickAddingScoreForTeamTwo() {
-  console.log('OH YEAH WE CAME BACK')
+  if (changedInputText instanceof HTMLInputElement) {
+    const textThatWasInput = changedInputText.value
+
+    if (teamOneNameText) {
+      teamOneNameText.textContent = textThatWasInput
+    }
+  }
 }
-addingScore2?.addEventListener('click', handleClickAddingScoreForTeamTwo)
+teamOneNameInput?.addEventListener('input', teamOneNameInputChanged)
 
-let subtractingScore2 = document.querySelector('.team2 .subtract')
+let secondTeamScore = 0
+const teamTwoPlusButton = document.querySelector('.team2 i.add')
+const teamTwoMinusButton = document.querySelector('.team2 i.subtract')
+const teamTwoScoreText = document.querySelector('.team2 i.h3')
+const teamTwoNameInput = document.querySelector('.team2 input')
+const teamTwoNameText = document.querySelector('.team2 h2')
 
-function handleClickSubtractingScoreForTeamTwo() {
-  console.log('TOOK AWAY')
+function handleClickOnTeamTwoPlusButton() {
+  secondTeamScore++
+
+  if (teamTwoScoreText) {
+    teamTwoScoreText.textContent = `${secondTeamScore}`
+  }
 }
-subtractingScore2?.addEventListener(
-  'click',
-  handleClickSubtractingScoreForTeamTwo
-)
+teamTwoPlusButton?.addEventListener('click', handleClickOnTeamTwoPlusButton)
 
-const inputElementOne = document.querySelector('input')
-const HeaderTwoElement = document.querySelector('.team1 h2')
+function handleClickOnTeamTwoMinusButton() {
+  if (secondTeamScore === 0) {
+    console.debug('User can not go below the value of 0')
+
+    return
+  }
+}
