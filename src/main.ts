@@ -56,6 +56,7 @@ function handleClickOnTeamTwoPlusButton() {
     teamTwoScoreText.textContent = `${secondTeamScore}`
   }
 }
+
 teamTwoPlusButton?.addEventListener('click', handleClickOnTeamTwoPlusButton)
 
 function handleClickOnTeamTwoMinusButton() {
@@ -64,4 +65,11 @@ function handleClickOnTeamTwoMinusButton() {
 
     return
   }
+  secondTeamScore--
+
+  if (teamTwoScoreText) {
+    teamTwoScoreText.textContent = `${secondTeamScore}`
+  }
 }
+
+teamTwoMinusButton?.addEventListener('click', handleClickOnTeamTwoMinusButton)
