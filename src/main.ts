@@ -43,7 +43,7 @@ teamOneNameInput?.addEventListener('input', teamOneNameInputChanged)
 let secondTeamScore = 0
 const teamTwoPlusButton = document.querySelector('.team2 i.add')
 const teamTwoMinusButton = document.querySelector('.team2 i.subtract')
-const teamTwoScoreText = document.querySelector('.team2 i.h3')
+const teamTwoScoreText = document.querySelector('.team2 h3')
 const teamTwoNameInput = document.querySelector('.team2 input')
 const teamTwoNameText = document.querySelector('.team2 h2')
 
