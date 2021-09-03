@@ -6,6 +6,7 @@ const teamOneMinusButton = document.querySelector('.team1 i.subtract')
 const teamOneScoreText = document.querySelector('.team1 h3')
 const teamOneNameInput = document.querySelector('.team1 input')
 const teamOneNameText = document.querySelector('.team1 h2')
+const resetBothTeams = document.querySelector('.reset')
 
 function handleClickOnTeamOnePlusButton() {
   firstTeamScore++
@@ -27,7 +28,7 @@ function handleClickOnTeamOneMinusButton() {
   }
 }
 teamOneMinusButton?.addEventListener('click', handleClickOnTeamOneMinusButton)
-function teamOneNameInputChanged(event: any) {
+function teamOneNameInputChanged(event: Event) {
   const changedInputText = event.target
 
   if (changedInputText instanceof HTMLInputElement) {
@@ -39,6 +40,16 @@ function teamOneNameInputChanged(event: any) {
   }
 }
 teamOneNameInput?.addEventListener('input', teamOneNameInputChanged)
+
+function handleClickButton(event: MouseEvent) {
+  const buttonClicked = event.target
+
+  if (buttonClicked instanceof HTMLElement) {
+    if (buttonClicked?.classList.contains('.reset')) {
+      firstTeamScore = 0
+    }
+  }
+}
 
 let secondTeamScore = 0
 const teamTwoPlusButton = document.querySelector('.team2 i.add')
@@ -72,7 +83,7 @@ function handleClickOnTeamTwoMinusButton() {
 
 teamTwoMinusButton?.addEventListener('click', handleClickOnTeamTwoMinusButton)
 
-function teamTwoNameInputChanged(event: any) {
+function teamTwoNameInputChanged(event: Event) {
   const changedInputText2 = event.target
 
   if (changedInputText2 instanceof HTMLInputElement) {
@@ -81,6 +92,9 @@ function teamTwoNameInputChanged(event: any) {
     if (teamTwoNameText) {
       teamTwoNameText.textContent = textThatWasInput2
     }
+  }
+  if (resetBothTeams instanceof HTMLElement) {
+    resetBothTeams?.addEventListener('click', handleClickButton)
   }
 }
 teamTwoNameInput?.addEventListener('input', teamTwoNameInputChanged)
