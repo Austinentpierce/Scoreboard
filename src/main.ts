@@ -1,100 +1,143 @@
 import './style.css'
 
-let firstTeamScore = 0
-const teamOnePlusButton = document.querySelector('.team1 i.add')
-const teamOneMinusButton = document.querySelector('.team1 i.subtract')
-const teamOneScoreText = document.querySelector('.team1 h3')
-const teamOneNameInput = document.querySelector('.team1 input')
-const teamOneNameText = document.querySelector('.team1 h2')
-const resetBothTeams = document.querySelector('.reset')
+let teamOneScore = 0
+let teamTwoScore = 0
 
-function handleClickOnTeamOnePlusButton() {
-  firstTeamScore++
+const teamOneScoreDisplay = document.querySelector('.team1 h3')
 
-  if (teamOneScoreText) {
-    teamOneScoreText.textContent = `${firstTeamScore}`
-  }
-}
-teamOnePlusButton?.addEventListener('click', handleClickOnTeamOnePlusButton)
-function handleClickOnTeamOneMinusButton() {
-  if (firstTeamScore === 0) {
-    console.debug('The value can not go below zero')
+const teamOneAddButton = document.querySelector('.team1 i.add')
+
+function handleClickOnTeamOneAddButton() {
+  if (teamOneScore >= 21) {
     return
   }
-  firstTeamScore--
 
-  if (teamOneScoreText) {
-    teamOneScoreText.textContent = `${firstTeamScore}`
+  teamOneScore++
+
+  if (teamOneScoreDisplay) {
+    teamOneScoreDisplay.textContent = `${teamOneScore}`
+  }
+
+  if (teamOneScore >= 21) {
+    window.alert('Team 1 is the winner!')
   }
 }
-teamOneMinusButton?.addEventListener('click', handleClickOnTeamOneMinusButton)
-function teamOneNameInputChanged(event: Event) {
-  const changedInputText = event.target
 
-  if (changedInputText instanceof HTMLInputElement) {
-    const textThatWasInput = changedInputText.value
+teamOneAddButton?.addEventListener('click', handleClickOnTeamOneAddButton)
 
-    if (teamOneNameText) {
-      teamOneNameText.textContent = textThatWasInput
+const teamOneDeleteButton = document.querySelector('.team1 i.subtract')
+
+function handleClickOnTeamOneDeleteButton() {
+  if (teamOneScore <= 0) {
+    return
+  }
+  teamOneScore--
+
+  if (teamOneScoreDisplay) {
+    teamOneScoreDisplay.textContent = `${teamOneScore}`
+  }
+}
+
+teamOneDeleteButton?.addEventListener('click', handleClickOnTeamOneDeleteButton)
+
+const teamOneNameDisplay = document.querySelector('.team1 h2')
+
+const teamOneNameInput = document.querySelector('.team1 input')
+
+function teamOneNameInputChanged(event: any) {
+  const inputThatWasChanged = event.target
+
+  if (inputThatWasChanged instanceof HTMLInputElement) {
+    const textThatWasInput = inputThatWasChanged.value
+
+    if (teamOneNameDisplay) {
+      teamOneNameDisplay.textContent = textThatWasInput
     }
   }
 }
+
 teamOneNameInput?.addEventListener('input', teamOneNameInputChanged)
 
-function handleClickButton(event: MouseEvent) {
-  const buttonClicked = event.target
+const teamTwoAddButton = document.querySelector('.team2 i.add')
 
-  if (buttonClicked instanceof HTMLElement) {
-    if (buttonClicked?.classList.contains('.reset')) {
-      firstTeamScore = 0
-    }
-  }
-}
-
-let secondTeamScore = 0
-const teamTwoPlusButton = document.querySelector('.team2 i.add')
-const teamTwoMinusButton = document.querySelector('.team2 i.subtract')
-const teamTwoScoreText = document.querySelector('.team2 h3')
-const teamTwoNameInput = document.querySelector('.team2 input')
-const teamTwoNameText = document.querySelector('.team2 h2')
-
-function handleClickOnTeamTwoPlusButton() {
-  secondTeamScore++
-
-  if (teamTwoScoreText) {
-    teamTwoScoreText.textContent = `${secondTeamScore}`
-  }
-}
-
-teamTwoPlusButton?.addEventListener('click', handleClickOnTeamTwoPlusButton)
-
-function handleClickOnTeamTwoMinusButton() {
-  if (secondTeamScore === 0) {
-    console.debug('User can not go below the value of 0')
-
+function handleClickOnTeamTwoAddButton() {
+  if (teamTwoScore >= 21) {
     return
   }
-  secondTeamScore--
 
-  if (teamTwoScoreText) {
-    teamTwoScoreText.textContent = `${secondTeamScore}`
+  teamTwoScore++
+
+  if (teamTwoScoreDisplay) {
+    teamTwoScoreDisplay.textContent = `${teamTwoScore}`
+  }
+
+  if (teamTwoScore >= 21) {
+    window.alert('Team 2 Won!!')
   }
 }
 
-teamTwoMinusButton?.addEventListener('click', handleClickOnTeamTwoMinusButton)
+const teamTwoDeleteButton = document.querySelector('.team2 i.subtract')
 
-function teamTwoNameInputChanged(event: Event) {
-  const changedInputText2 = event.target
-
-  if (changedInputText2 instanceof HTMLInputElement) {
-    const textThatWasInput2 = changedInputText2.value
-
-    if (teamTwoNameText) {
-      teamTwoNameText.textContent = textThatWasInput2
-    }
+function handleClickOnTeamTwoDeleteButton() {
+  if (teamTwoScore <= 0) {
+    return
   }
-  if (resetBothTeams instanceof HTMLElement) {
-    resetBothTeams?.addEventListener('click', handleClickButton)
+  teamTwoScore--
+
+  if (teamTwoScoreDisplay) {
+    teamTwoScoreDisplay.textContent = `${teamTwoScore}`
+  }
+}
+
+teamTwoDeleteButton?.addEventListener('click', handleClickOnTeamTwoDeleteButton)
+
+const teamTwoScoreDisplay = document.querySelector('.team2 h3')
+
+teamTwoAddButton?.addEventListener('click', handleClickOnTeamTwoAddButton)
+
+const teamTwoNameDisplay = document.querySelector('.team2 h2')
+
+const teamTwoNameInput = document.querySelector('.team2 input')
+
+function teamTwoNameInputChanged(event: any) {
+  const inputThatWasChanged = event.target
+
+  if (inputThatWasChanged instanceof HTMLInputElement) {
+    const textThatWasInput = inputThatWasChanged.value
+
+    if (teamTwoNameDisplay) {
+      teamTwoNameDisplay.textContent = textThatWasInput
+    }
   }
 }
 teamTwoNameInput?.addEventListener('input', teamTwoNameInputChanged)
+
+const resetButton = document.querySelector('.reset')
+
+function handleClickOnResetButton() {
+  teamTwoScore = 0
+  teamOneScore = 0
+  if (teamOneScoreDisplay) {
+    teamOneScoreDisplay.textContent = `${teamOneScore}`
+  }
+
+  if (teamTwoScoreDisplay) {
+    teamTwoScoreDisplay.textContent = `${teamTwoScore}`
+  }
+
+  if (teamOneNameDisplay) {
+    teamOneNameDisplay.textContent = 'Team 1'
+  }
+
+  if (teamTwoNameDisplay) {
+    teamTwoNameDisplay.textContent = 'Team 2'
+  }
+  if (teamOneNameInput) {
+    teamOneNameInput.textContent = 'Name'
+  }
+
+  if (teamTwoNameInput) {
+    teamTwoNameInput.textContent = 'Name'
+  }
+}
+resetButton?.addEventListener('click', handleClickOnResetButton)
