@@ -71,8 +71,5 @@ fieldset i.subtract {
 footer {
   display: flex;
   justify-content: center;
-}
-
-button .reset{
-  font-size: 3rem;
+  font-size: 5rem;
 }
