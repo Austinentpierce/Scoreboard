@@ -1,48 +1,39 @@
 import './style.css'
 
-let teamOneScore = 0
-let teamTwoScore = 0
+let firstTeamScore = 0
 
-const teamOneScoreDisplay = document.querySelector('.team1 h3')
-
-const teamOneAddButton = document.querySelector('.team1 i.add')
+const firstTeamScoreDisplay = document.querySelector('.team1 h3')
+const firstTeamDeleteButton = document.querySelector('.team1 i.subtract')
+const firstTeamPlusButton = document.querySelector('.team1 i.add')
+const firstTeamNameDisplay = document.querySelector('.team1 h2')
+const firstTeamNameInput = document.querySelector('.team1 input')
 
 function handleClickOnTeamOneAddButton() {
-  if (teamOneScore >= 21) {
+  if (firstTeamScore >= 21) {
     return
   }
 
-  teamOneScore++
+  firstTeamScore++
 
-  if (teamOneScoreDisplay) {
-    teamOneScoreDisplay.textContent = `${teamOneScore}`
+  if (firstTeamScoreDisplay) {
+    firstTeamScoreDisplay.textContent = `${firstTeamScore}`
   }
 
-  if (teamOneScore >= 21) {
+  if (firstTeamScore >= 21) {
     window.alert('Team 1 is the winner!')
   }
 }
 
-teamOneAddButton?.addEventListener('click', handleClickOnTeamOneAddButton)
-
-const teamOneDeleteButton = document.querySelector('.team1 i.subtract')
-
 function handleClickOnTeamOneDeleteButton() {
-  if (teamOneScore <= 0) {
+  if (firstTeamScore <= 0) {
     return
   }
-  teamOneScore--
+  firstTeamScore--
 
-  if (teamOneScoreDisplay) {
-    teamOneScoreDisplay.textContent = `${teamOneScore}`
+  if (firstTeamScoreDisplay) {
+    firstTeamScoreDisplay.textContent = `${firstTeamScore}`
   }
 }
-
-teamOneDeleteButton?.addEventListener('click', handleClickOnTeamOneDeleteButton)
-
-const teamOneNameDisplay = document.querySelector('.team1 h2')
-
-const teamOneNameInput = document.querySelector('.team1 input')
 
 function teamOneNameInputChanged(event: any) {
   const inputThatWasChanged = event.target
@@ -50,54 +41,47 @@ function teamOneNameInputChanged(event: any) {
   if (inputThatWasChanged instanceof HTMLInputElement) {
     const textThatWasInput = inputThatWasChanged.value
 
-    if (teamOneNameDisplay) {
-      teamOneNameDisplay.textContent = textThatWasInput
+    if (firstTeamNameDisplay) {
+      firstTeamNameDisplay.textContent = textThatWasInput
     }
   }
 }
 
-teamOneNameInput?.addEventListener('input', teamOneNameInputChanged)
+let secondTeamScore = 0
+const secondTeamDeleteButton = document.querySelector('.team2 i.subtract')
+const secondTeamPlusButton = document.querySelector('.team2 i.add')
+const secondTeamScoreDisplay = document.querySelector('.team2 h3')
+const secondTeamNameDisplay = document.querySelector('.team2 h2')
+const secondTeamNameInput = document.querySelector('.team2 input')
 
-const teamTwoAddButton = document.querySelector('.team2 i.add')
+const resetButton = document.querySelector('.reset')
 
 function handleClickOnTeamTwoAddButton() {
-  if (teamTwoScore >= 21) {
+  if (secondTeamScore >= 21) {
     return
   }
 
-  teamTwoScore++
+  secondTeamScore++
 
-  if (teamTwoScoreDisplay) {
-    teamTwoScoreDisplay.textContent = `${teamTwoScore}`
+  if (secondTeamScoreDisplay) {
+    secondTeamScoreDisplay.textContent = `${secondTeamScore}`
   }
 
-  if (teamTwoScore >= 21) {
+  if (secondTeamScore >= 21) {
     window.alert('Team 2 Won!!')
   }
 }
 
-const teamTwoDeleteButton = document.querySelector('.team2 i.subtract')
-
 function handleClickOnTeamTwoDeleteButton() {
-  if (teamTwoScore <= 0) {
+  if (secondTeamScore <= 0) {
     return
   }
-  teamTwoScore--
+  secondTeamScore--
 
-  if (teamTwoScoreDisplay) {
-    teamTwoScoreDisplay.textContent = `${teamTwoScore}`
+  if (secondTeamScoreDisplay) {
+    secondTeamScoreDisplay.textContent = `${secondTeamScore}`
   }
 }
-
-teamTwoDeleteButton?.addEventListener('click', handleClickOnTeamTwoDeleteButton)
-
-const teamTwoScoreDisplay = document.querySelector('.team2 h3')
-
-teamTwoAddButton?.addEventListener('click', handleClickOnTeamTwoAddButton)
-
-const teamTwoNameDisplay = document.querySelector('.team2 h2')
-
-const teamTwoNameInput = document.querySelector('.team2 input')
 
 function teamTwoNameInputChanged(event: any) {
   const inputThatWasChanged = event.target
@@ -105,39 +89,36 @@ function teamTwoNameInputChanged(event: any) {
   if (inputThatWasChanged instanceof HTMLInputElement) {
     const textThatWasInput = inputThatWasChanged.value
 
-    if (teamTwoNameDisplay) {
-      teamTwoNameDisplay.textContent = textThatWasInput
+    if (secondTeamNameDisplay) {
+      secondTeamNameDisplay.textContent = textThatWasInput
     }
   }
 }
-teamTwoNameInput?.addEventListener('input', teamTwoNameInputChanged)
-
-const resetButton = document.querySelector('.reset')
 
 function handleClickOnResetButton() {
-  teamTwoScore = 0
-  teamOneScore = 0
-  if (teamOneScoreDisplay) {
-    teamOneScoreDisplay.textContent = `${teamOneScore}`
+  secondTeamScore = 0
+  firstTeamScore = 0
+  if (secondTeamScoreDisplay) {
+    secondTeamScoreDisplay.textContent = `${firstTeamScore}`
   }
 
-  if (teamTwoScoreDisplay) {
-    teamTwoScoreDisplay.textContent = `${teamTwoScore}`
+  if (secondTeamScoreDisplay) {
+    secondTeamScoreDisplay.textContent = `${secondTeamScore}`
   }
 
-  if (teamOneNameDisplay) {
-    teamOneNameDisplay.textContent = 'Team 1'
+  if (firstTeamNameDisplay) {
+    firstTeamNameDisplay.textContent = 'Team 1'
   }
 
-  if (teamTwoNameDisplay) {
-    teamTwoNameDisplay.textContent = 'Team 2'
-  }
-  if (teamOneNameInput) {
-    teamOneNameInput.textContent = 'Name'
-  }
-
-  if (teamTwoNameInput) {
-    teamTwoNameInput.textContent = 'Name'
+  if (secondTeamNameDisplay) {
+    secondTeamNameDisplay.textContent = 'Team 2'
   }
 }
+
+firstTeamPlusButton?.addEventListener('click', handleClickOnTeamOneAddButton)
+firstTeamDeleteButton?.addEventListener('click', handleClickOnTeamOneDeleteButton)
+firstTeamNameInput?.addEventListener('input', teamOneNameInputChanged)
+secondTeamPlusButton?.addEventListener('click', handleClickOnTeamTwoAddButton)
+secondTeamDeleteButton?.addEventListener('click', handleClickOnTeamTwoDeleteButton)
+secondTeamNameInput?.addEventListener('input', teamTwoNameInputChanged)
 resetButton?.addEventListener('click', handleClickOnResetButton)
